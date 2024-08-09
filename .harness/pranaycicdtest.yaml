@@ -27,7 +27,7 @@ pipeline:
                           PR="pranay"
                           echo $PR
                           echo "hello"
-                          curl -X POST --data "$PR" http://35.222.129.92:12345
+                          #curl -X POST --data "$PR" http://35.222.129.92:12345
                           echo "<+trigger.prTitle>"
                           <+trigger.prTitle>
                           #"<+trigger.prTitle>"
