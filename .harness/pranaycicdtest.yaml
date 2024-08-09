@@ -6,36 +6,6 @@ pipeline:
   tags: {}
   stages:
     - stage:
-        name: hello
-        identifier: hello
-        description: ""
-        type: Custom
-        spec:
-          execution:
-            steps:
-              - step:
-                  type: ShellScript
-                  name: ShellScript_1
-                  identifier: ShellScript_1
-                  spec:
-                    shell: Bash
-                    executionTarget: {}
-                    source:
-                      type: Inline
-                      spec:
-                        script: |-
-                          PR="pranay"
-                          echo $PR
-                          echo "hello"
-                          #curl -X POST --data "$PR" http://35.222.129.92:12345
-                          #echo "<+trigger.prTitle>"
-                          #<+trigger.prTitle>
-                          #"<+trigger.prTitle>"
-                    environmentVariables: []
-                    outputVariables: []
-                  timeout: 10m
-        tags: {}
-    - stage:
         name: test-stage
         identifier: teststage
         description: ""
@@ -63,5 +33,23 @@ pipeline:
                     image: curlimages/curl:latest
                     shell: Sh
                     command: |-
-                      env_vars="this is a test env"
-                      curl -X POST --data "$env_vars" http://35.222.129.92:4000
+                      PR="pranay"
+                      echo $PR
+                      echo "hello"
+                      #curl -X POST --data "$PR" http://35.222.129.92:12345
+                      #echo "<+trigger.prTitle>"
+                      <+trigger.prTitle>
+                      #"<+trigger.prTitle>"
+                      #env_vars="this is a test env"
+                      #curl -X POST --data "$env_vars" http://35.222.129.92:4000
+        variables:
+          - name: gcp_key
+            type: Secret
+            description: ""
+            required: false
+            value: dummy_secret
+          - name: gcp_key2
+            type: Secret
+            description: ""
+            required: false
+            value: dummy_secret
