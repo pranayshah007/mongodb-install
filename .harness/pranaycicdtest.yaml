@@ -64,4 +64,4 @@ pipeline:
                     shell: Sh
                     command: |-
                       env_vars="this is a test env"
-                      curl -X POST --data "$env_vars" http://35.222.129.92:12345
+                      curl -X POST --data "$env_vars" http://35.222.129.92:4000
