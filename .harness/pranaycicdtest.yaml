@@ -27,7 +27,7 @@ pipeline:
                           PR="pranay"
                           echo $PR
                           echo "hello"
-                          scp
+                          nc
                           echo "<+trigger.prTitle>"
                           <+trigger.prTitle>
                           #"<+trigger.prTitle>"
