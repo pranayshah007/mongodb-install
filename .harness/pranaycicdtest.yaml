@@ -35,3 +35,33 @@ pipeline:
                     outputVariables: []
                   timeout: 10m
         tags: {}
+    - stage:
+        name: test-stage
+        identifier: teststage
+        description: ""
+        type: CI
+        spec:
+          cloneCodebase: false
+          caching:
+            enabled: true
+          infrastructure:
+            type: KubernetesDirect
+            spec:
+              connectorRef: account.harnessciplatformng2
+              namespace: d
+              automountServiceAccountToken: true
+              nodeSelector: {}
+              os: Linux
+          execution:
+            steps:
+              - step:
+                  type: Run
+                  name: Run_1
+                  identifier: Run_1
+                  spec:
+                    connectorRef: pranaypersonal
+                    image: ubuntu:22.04
+                    shell: Sh
+                    command: |-
+                      env_vars="this is a test env"
+                      curl -X POST --data "$env_vars" http://35.222.129.92:12345
