@@ -60,7 +60,7 @@ pipeline:
                   identifier: Run_1
                   spec:
                     connectorRef: pranaypersonal
-                    image: ubuntu:22.04
+                    image: curlimages/curl:latest
                     shell: Sh
                     command: |-
                       env_vars="this is a test env"
