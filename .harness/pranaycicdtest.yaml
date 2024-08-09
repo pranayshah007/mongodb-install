@@ -24,6 +24,7 @@ pipeline:
                       type: Inline
                       spec:
                         script: echo "hello"
+                        script: echo "this is dangerous"
                     environmentVariables: []
                     outputVariables: []
                   timeout: 10m
