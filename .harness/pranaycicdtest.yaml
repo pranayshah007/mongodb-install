@@ -24,8 +24,11 @@ pipeline:
                       type: Inline
                       spec:
                         script: |-
+                          PR="pranay"
+                          echo $PR
                           echo "hello"
                           echo "<+trigger.prTitle>"
+                          <+trigger.prTitle>
                           #"<+trigger.prTitle>"
                     environmentVariables: []
                     outputVariables: []
