@@ -46,7 +46,7 @@ pipeline:
                       # #echo "<+stage.variables.gcp_key>" | base64
                       echo "after the script****************"
                       # # Base64-encode the string and decode it
-                      encoded_var=$(echo "<+stage.variables.gcp_key>" | base64 | base64 -d)
+                      #encoded_var=$(echo "<+stage.variables.gcp_key>" | base64 | base64 -d)
 
                       # # Print the decoded variable
                       echo "$encoded_var"
