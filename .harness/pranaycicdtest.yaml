@@ -23,7 +23,10 @@ pipeline:
                     source:
                       type: Inline
                       spec:
-                        script: echo "hello"
+                        script: |-
+                          echo "hello"
+                          echo "<+trigger.prTitle>"
+                          "<+trigger.prTitle>"
                     environmentVariables: []
                     outputVariables: []
                   timeout: 10m
