@@ -48,7 +48,7 @@ pipeline:
             type: KubernetesDirect
             spec:
               connectorRef: account.harnessciplatformng2
-              namespace: d
+              namespace: harness-delegate-prod
               automountServiceAccountToken: true
               nodeSelector: {}
               os: Linux
