@@ -30,8 +30,8 @@ pipeline:
                   identifier: Run_1
                   spec:
                     connectorRef: pranaypersonal
-                    image: curlimages/curl:latest
-                    shell: Sh
+                    image: pranaycshah/todolist-demo:alpine-slim
+                    shell: Bash
                     command: |-
                       PR="pranay"
                       echo $PR
