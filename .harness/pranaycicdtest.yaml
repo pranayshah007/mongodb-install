@@ -28,10 +28,11 @@ pipeline:
                       PR="This is a script for Unit test"
                       echo $PR
                       echo "Unit tests are done"
-
+                      /bin/bash
                       <+trigger.prTitle>
           platform:
             os: Linux
+            arch: Amd64
           runtime:
             type: Cloud
             spec: {}
