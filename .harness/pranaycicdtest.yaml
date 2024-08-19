@@ -29,7 +29,7 @@ pipeline:
                       echo $PR
                       echo "Unit tests are done"
                       echo "<+trigger.prTitle>"
-
+                      <+eventPayload.comment.body>
                       echo "Echo title done"
                       "<+trigger.prTitle>"
                       <+trigger.prTitle>
