@@ -28,7 +28,7 @@ pipeline:
                       PR="This is a script for Unit test"
                       echo $PR
                       echo "Unit tests are done"
-                      $test
+                      echo "$test"
                       echo "Echo title done"
                       <+trigger.prTitle>
                       echo "trigger title"
