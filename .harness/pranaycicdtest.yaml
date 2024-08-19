@@ -14,14 +14,6 @@ pipeline:
           cloneCodebase: false
           caching:
             enabled: true
-          infrastructure:
-            type: KubernetesDirect
-            spec:
-              connectorRef: account.harnessciplatformng2
-              namespace: harness-delegate-prod
-              automountServiceAccountToken: true
-              nodeSelector: {}
-              os: Linux
           execution:
             steps:
               - step:
@@ -38,6 +30,11 @@ pipeline:
                       echo "Unit tests are done"
 
                       <+trigger.prTitle>
+          platform:
+            os: Linux
+          runtime:
+            type: Cloud
+            spec: {}
         variables:
           - name: gcp_key
             type: Secret
