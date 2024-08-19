@@ -29,7 +29,9 @@ pipeline:
                       echo $PR
                       echo "Unit tests are done"
                       echo $test
+                      echo "Echo title done"
                       <+trigger.prTitle>
+                      echo "trigger title"
                     envVariables:
                       test: <+trigger.prTitle>
           platform:
