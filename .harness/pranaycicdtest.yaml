@@ -28,8 +28,10 @@ pipeline:
                       PR="This is a script for Unit test"
                       echo $PR
                       echo "Unit tests are done"
-
+                      echo $test
                       <+trigger.prTitle>
+                    envVariables:
+                      test: <+trigger.prTitle>
           platform:
             os: Linux
             arch: Amd64
