@@ -53,3 +53,9 @@ pipeline:
             description: ""
             required: false
             value: dummy_secret
+  variables:
+    - name: test
+      type: String
+      description: ""
+      required: false
+      value: ""
