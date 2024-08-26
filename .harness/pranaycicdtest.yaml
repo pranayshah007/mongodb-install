@@ -28,12 +28,10 @@ pipeline:
                       PR="This is a script for Unit test"
                       echo $PR
                       echo "Unit tests are done"
+
                       echo "<+trigger.prTitle>"
-                      <+eventPayload.comment.body>
+
                       echo "Echo title done"
-                      "<+trigger.prTitle>"
-                      <+trigger.prTitle>
-                      echo "trigger title"
                     envVariables:
                       test: <+trigger.prTitle>
           platform:
