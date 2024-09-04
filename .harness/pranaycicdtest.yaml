@@ -32,6 +32,7 @@ pipeline:
                       echo "<+trigger.prTitle>"
 
                       echo "Echo title done"
+                      #
                     envVariables:
                       test: <+trigger.prTitle>
           platform:
