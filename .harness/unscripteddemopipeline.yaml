@@ -3,59 +3,59 @@ pipeline:
   orgIdentifier: default
   tags: {}
   stages:
-  - stage:
-      name: test-stage
-      identifier: teststage
-      description: ""
-      type: CI
-      spec:
-        cloneCodebase: false
-        caching:
-          enabled: true
-          paths: []
-        execution:
-          steps:
-          - step:
-              type: Run
-              name: Run_1
-              identifier: Run_1
-              spec:
-                connectorRef: pranaypersonal
-                image: pranaycshah/todolist-demo:alpine-slim
-                shell: Bash
-                command: |-
-                  PR="This is a script for Unit test"
-                  echo $PR
-                  echo "Unit tests are done"
-
-                  echo "<+trigger.prTitle>"
-
-                  echo "Echo title done"
-                  #
-        platform:
-          os: Linux
-          arch: Amd64
-        runtime:
-          type: Cloud
-          spec: {}
-        slsa_provenance:
-          enabled: false
-      variables:
-      - name: gcp_key
-        type: Secret
+    - stage:
+        name: test-stage
+        identifier: teststage
         description: ""
-        required: false
-        value: dummy_secret
-      - name: gcp_key2
-        type: Secret
-        description: ""
-        required: false
-        value: dummy_secret
+        type: CI
+        spec:
+          cloneCodebase: false
+          caching:
+            enabled: true
+            paths: []
+          execution:
+            steps:
+              - step:
+                  type: Run
+                  name: Run_1
+                  identifier: Run_1
+                  spec:
+                    connectorRef: pranaypersonal
+                    image: pranaycshah/todolist-demo:alpine-slim
+                    shell: Bash
+                    command: |-
+                      PR="This is a script for Unit test"
+                      echo $PR
+                      echo "Unit tests are done"
+
+
+
+                      echo "Echo title done"
+                      #
+          platform:
+            os: Linux
+            arch: Amd64
+          runtime:
+            type: Cloud
+            spec: {}
+          slsa_provenance:
+            enabled: false
+        variables:
+          - name: gcp_key
+            type: Secret
+            description: ""
+            required: false
+            value: dummy_secret
+          - name: gcp_key2
+            type: Secret
+            description: ""
+            required: false
+            value: dummy_secret
   variables:
-  - name: test
-    type: String
-    description: ""
-    required: false
-    value: ""
+    - name: test
+      type: String
+      description: ""
+      required: false
+      value: ""
   identifier: unscripteddemopipeline
   name: unscripted-demo-pipeline
