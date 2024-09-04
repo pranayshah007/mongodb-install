@@ -1,5 +1,5 @@
 pipeline:
-  name: pranay-cicd-test
+  name: unscripted-demo-pr-check-pipeline
   identifier: pranaycicdtest
   projectIdentifier: Security_Test_Scans
   orgIdentifier: default
