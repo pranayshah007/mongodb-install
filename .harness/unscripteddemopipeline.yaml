@@ -28,7 +28,6 @@ pipeline:
                       echo $PR
                       echo "Unit tests are done"
 
-                      echo "<+trigger.prTitle>"
 
                       echo "Echo title done"
                       #
