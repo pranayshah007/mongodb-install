@@ -1,15 +1,36 @@
 name: Check Fork and PR Source
 
+permissions:
+  contents: read
+
 on:
   pull_request:
-    types: [opened, synchronize]
+    types: [opened, synchronize, reopened]
+  issue_comment:
+    types: [created]
 
 jobs:
   check_fork:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Check if triggered by PR comment or PR event
+        run: |
+          if [ "${{ github.event_name }}" == "issue_comment" ]; then
+            echo "Triggered by a comment."
+            # Check if the comment was made on a pull request
+            if [ "${{ github.event.issue.pull_request }}" ]; then
+              echo "This comment was made on a pull request."
+            else
+              echo "This comment was made on an issue, not a pull request."
+              exit 1
+            fi
+          else
+            echo "Triggered by a pull request event."
+          fi
+
       - name: Check if PR is from a fork
+        if: github.event_name == 'pull_request' || github.event.issue.pull_request
         run: |
           if [ "${{ github.event.pull_request.head.repo.fork }}" = "true" ]; then
             echo "This PR is from a fork."
@@ -18,6 +39,7 @@ jobs:
           fi
 
       - name: Compare repository owners
+        if: github.event_name == 'pull_request' || github.event.issue.pull_request
         run: |
           echo "Head Repo Owner: ${{ github.event.pull_request.head.repo.owner.login }}"
           echo "Base Repo Owner: ${{ github.event.repository.owner.login }}"
@@ -29,6 +51,7 @@ jobs:
           fi
 
       - name: Check if PR repo differs from base repo
+        if: github.event_name == 'pull_request' || github.event.issue.pull_request
         run: |
           echo "Head Repo Full Name: ${{ github.event.pull_request.head.repo.full_name }}"
           echo "Base Repo Full Name: ${{ github.event.repository.full_name }}"
@@ -40,11 +63,13 @@ jobs:
           fi
 
       - name: Check PR SHA for trusted source
+        if: github.event_name == 'pull_request' || github.event.issue.pull_request
         run: |
           echo "Checking commit SHA: ${{ github.event.pull_request.head.sha }}"
           # Add additional logic here to verify the SHA against a list of trusted sources if needed.
 
       - name: Check repository visibility (public or private)
+        if: github.event_name == 'pull_request' || github.event.issue.pull_request
         run: |
           if [ "${{ github.event.repository.private }}" = "false" ]; then
             echo "This is a public repository."
@@ -53,11 +78,9 @@ jobs:
           fi
 
       - name: Restrict actions based on fork status
+        if: github.event_name == 'pull_request' || github.event.issue.pull_request
         run: |
           if [ "${{ github.event.pull_request.head.repo.full_name }}" != "${{ github.event.repository.full_name }}" ]; then
             echo "This is from a fork, so restricting sensitive actions."
-            # Add actions here that are safe to run for forks
           else
             echo "This is not from a fork. You can run sensitive actions here."
-            # Add actions that should only run for non-forked PRs
-          fi
