@@ -78,9 +78,9 @@ jobs:
           fi
 
       - name: Restrict actions based on fork status
-        if: github.event_name == 'pull_request' || github.event.issue.pull_request
         run: |
-          if [ "${{ github.event.pull_request.head.repo.full_name }}" != "${{ github.event.repository.full_name }}" ]; then
-            echo "This is from a fork, so restricting sensitive actions."
-          else
-            echo "This is not from a fork. You can run sensitive actions here."
+         if [ "${{ github.event.pull_request.head.repo.full_name }}" != "${{ github.event.repository.full_name }}" ]; then
+          echo "This is from a fork, so restricting sensitive actions."
+         else
+          echo "This is not from a fork. You can run sensitive actions here."
+         fi
