@@ -1,0 +1,63 @@
+name: Check Fork and PR Source
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  check_fork:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check if PR is from a fork
+        run: |
+          if [ "${{ github.event.pull_request.head.repo.fork }}" = "true" ]; then
+            echo "This PR is from a fork."
+          else
+            echo "This PR is not from a fork."
+          fi
+
+      - name: Compare repository owners
+        run: |
+          echo "Head Repo Owner: ${{ github.event.pull_request.head.repo.owner.login }}"
+          echo "Base Repo Owner: ${{ github.event.repository.owner.login }}"
+          
+          if [ "${{ github.event.pull_request.head.repo.owner.login }}" != "${{ github.event.repository.owner.login }}" ]; then
+            echo "This PR originates from a different owner (likely a fork)."
+          else
+            echo "This PR is from the same repository."
+          fi
+
+      - name: Check if PR repo differs from base repo
+        run: |
+          echo "Head Repo Full Name: ${{ github.event.pull_request.head.repo.full_name }}"
+          echo "Base Repo Full Name: ${{ github.event.repository.full_name }}"
+
+          if [ "${{ github.event.pull_request.head.repo.full_name }}" != "${{ github.event.repository.full_name }}" ]; then
+            echo "This PR is from a forked repository."
+          else
+            echo "This PR is from the same repository."
+          fi
+
+      - name: Check PR SHA for trusted source
+        run: |
+          echo "Checking commit SHA: ${{ github.event.pull_request.head.sha }}"
+          # Add additional logic here to verify the SHA against a list of trusted sources if needed.
+
+      - name: Check repository visibility (public or private)
+        run: |
+          if [ "${{ github.event.repository.private }}" = "false" ]; then
+            echo "This is a public repository."
+          else
+            echo "This is a private repository."
+          fi
+
+      - name: Restrict actions based on fork status
+        run: |
+          if [ "${{ github.event.pull_request.head.repo.full_name }}" != "${{ github.event.repository.full_name }}" ]; then
+            echo "This is from a fork, so restricting sensitive actions."
+            # Add actions here that are safe to run for forks
+          else
+            echo "This is not from a fork. You can run sensitive actions here."
+            # Add actions that should only run for non-forked PRs
+          fi
