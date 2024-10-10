@@ -26,8 +26,6 @@ pipeline:
                     tags:
                       - latest
                     caching: true
-                    buildArgs:
-                      GITHUB_TOKEN: <+stage.variables.Github_token>
               - step:
                   type: Run
                   name: Run_1
