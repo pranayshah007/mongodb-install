@@ -17,6 +17,18 @@ pipeline:
           execution:
             steps:
               - step:
+                  type: BuildAndPushDockerRegistry
+                  name: BuildAndPushDockerRegistry_1
+                  identifier: BuildAndPushDockerRegistry_1
+                  spec:
+                    connectorRef: pranaypersonal
+                    repo: pranaycshah/cosign_test
+                    tags:
+                      - latest
+                    caching: true
+                    buildArgs:
+                      GITHUB_TOKEN: <+stage.variables.Github_token>
+              - step:
                   type: Run
                   name: Run_1
                   identifier: Run_1
@@ -41,17 +53,6 @@ pipeline:
           runtime:
             type: Cloud
             spec: {}
-        variables:
-          - name: gcp_key
-            type: Secret
-            description: ""
-            required: false
-            value: dummy_secret
-          - name: gcp_key2
-            type: Secret
-            description: ""
-            required: false
-            value: dummy_secret
   variables:
     - name: test
       type: String
