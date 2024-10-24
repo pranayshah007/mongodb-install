@@ -22,7 +22,14 @@ pipeline:
                   identifier: Run_2
                   spec:
                     shell: Sh
-                    command: echo "hello"
+                    command: |-
+                      echo "hello"
+
+                      echo "<+pipeline.triggeredBy.comment>"
+                      echo "<+pipeline.triggerType>"
+                      echo "<+pipeline.triggeredBy.name>"
+                      echo "<+pipeline.triggeredBy.email>"
+                      echo "<+pipeline.triggeredBy.triggerIdentifier>"
                   when:
                     stageStatus: All
                     condition: <+pipeline.triggeredBy.comment> == "false"
