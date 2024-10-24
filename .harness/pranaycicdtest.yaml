@@ -32,7 +32,6 @@ pipeline:
                       echo "<+pipeline.triggeredBy.triggerIdentifier>"
                   when:
                     stageStatus: All
-                    condition: <+pipeline.triggeredBy.comment> == "false"
               - step:
                   type: BuildAndPushDockerRegistry
                   name: BuildAndPushDockerRegistry_1
